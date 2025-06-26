@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Examen_Mvvm.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Examen_Mvvm.ViewModels"
+             Title="Calculadora de Descuentos - Despensa"
+             BackgroundColor="#F5F5F5">
+
+	<ContentPage.BindingContext>
+		<viewmodels:MainPageViewModel />
+	</ContentPage.BindingContext>
+
+	<ScrollView>
+		<Grid Padding="20" RowSpacing="15">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<!-- Título -->
+			<Frame Grid.Row="0" BackgroundColor="#2E7D32" CornerRadius="10" Padding="15">
+				<Label Text="💰 CALCULADORA DE DESCUENTOS"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+			</Frame>
+
+			<!-- Información de descuentos -->
+			<Frame Grid.Row="1" BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+				<StackLayout>
+					<Label Text="📋 Rangos de Descuento:"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1976D2" />
+					<Label Text="• L0.00 - L999.99: Sin descuento" FontSize="12" TextColor="#424242" />
+					<Label Text="• L1,000.00 - L4,999.99: 10% descuento" FontSize="12" TextColor="#424242" />
+					<Label Text="• L5,000.00 - L9,999.99: 20% descuento" FontSize="12" TextColor="#424242" />
+					<Label Text="• L10,000.00 en adelante: 30% descuento" FontSize="12" TextColor="#424242" />
+				</StackLayout>
+			</Frame>
+
+			<!-- Productos -->
+			<Frame Grid.Row="2" BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+				<StackLayout Spacing="15">
+					<Label Text="🛒 Productos"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1976D2" />
+
+					<!-- Producto 1 -->
+					<StackLayout>
+						<Label Text="Producto 1:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#F8F9FA" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding Producto1}"
+                                   Placeholder="Ingrese el precio del producto 1"
+                                   Keyboard="Numeric"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+
+					<!-- Producto 2 -->
+					<StackLayout>
+						<Label Text="Producto 2:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#F8F9FA" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding Producto2}"
+                                   Placeholder="Ingrese el precio del producto 2"
+                                   Keyboard="Numeric"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+
+					<!-- Producto 3 -->
+					<StackLayout>
+						<Label Text="Producto 3:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#F8F9FA" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding Producto3}"
+                                   Placeholder="Ingrese el precio del producto 3"
+                                   Keyboard="Numeric"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+				</StackLayout>
+			</Frame>
+
+			<!-- Botones -->
+			<Grid Grid.Row="3" ColumnSpacing="10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+				<Button Grid.Column="0"
+                        Text="🔢 CALCULAR"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        HeightRequest="50"
+                        Command="{Binding CalcularCommand}" />
+
+				<Button Grid.Column="1"
+                        Text="🧹 LIMPIAR"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        HeightRequest="50"
+                        Command="{Binding LimpiarCommand}" />
+			</Grid>
+
+			<!-- Resultados -->
+			<Frame Grid.Row="4" BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+				<StackLayout Spacing="15">
+					<Label Text="📊 Resultados"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1976D2" />
+
+					<!-- Subtotal -->
+					<StackLayout>
+						<Label Text="Subtotal:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#E8F5E8" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding Subtotal}"
+                                   IsReadOnly="True"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#2E7D32"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+
+					<!-- Descuento -->
+					<StackLayout>
+						<Label Text="Descuento:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#FFF3E0" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding Descuento}"
+                                   IsReadOnly="True"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#F57C00"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+
+					<!-- Total a Pagar -->
+					<StackLayout>
+						<Label Text="Total a Pagar:" FontSize="14" FontAttributes="Bold" TextColor="#424242" />
+						<Frame BackgroundColor="#E3F2FD" CornerRadius="5" Padding="10">
+							<Entry Text="{Binding TotalAPagar}"
+                                   IsReadOnly="True"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#1976D2"
+                                   BackgroundColor="Transparent" />
+						</Frame>
+					</StackLayout>
+				</StackLayout>
+			</Frame>
+
+			<!-- Pie de página -->
+			<Frame Grid.Row="5" BackgroundColor="#37474F" CornerRadius="8" Padding="10">
+				<Label Text="Desarrollado con .NET MAUI y MVVM"
+                       FontSize="12"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+			</Frame>
+		</Grid>
+	</ScrollView>
+</ContentPage>
